@@ -11,13 +11,11 @@ namespace exercise.Controllers
 {
     public class SchoolController : ApiController
     {
-        public List<Student> students = new List<Student>();
-        public SchoolController()
-        {
-            students.Add(new Student() { Id = 0, Name = "hank" });
-            students.Add(new Student() { Id = 1, Name = "deadeye" });
-            students.Add(new Student() { Id = 2, Name = "rider" });
-        }
+        public static List<Student> students = new List<Student>() {
+            new Student() { Id = 0, Name = "hank" },
+            new Student() { Id = 1, Name = "deadeye" },
+            new Student() { Id = 2, Name = "rider" }
+        };      
 
         /// <summary>
         /// Query String : primitive type/complex type
@@ -34,6 +32,7 @@ namespace exercise.Controllers
         {
             return students.Where(o => o.Id == student.Id && o.Name == student.Name).FirstOrDefault();
         }
+        
 
         /// <summary>
         /// Query String : primitive type/complex type
@@ -44,6 +43,11 @@ namespace exercise.Controllers
         public void Post(int id, string name)
         {
             students.Add(new Student() { Id = id, Name = name });
+        }
+
+        public void Post(Student student)
+        {
+            students.Add(student);
         }
     }
 }
