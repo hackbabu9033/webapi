@@ -65,10 +65,6 @@ namespace exercise.Controllers
         {
             students.Add(new Student() { Id = id, Name = name });
         }
-
-        public void Post(Student student)
-        {
-            students.Add(student);
-        }
+        
     }
 }
