@@ -1,4 +1,5 @@
-﻿using exercise.Models;
+﻿using exercise.CustomResult;
+using exercise.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,13 +23,15 @@ namespace exercise.Controllers
         public static List<Student> students = new List<Student>() {
             new Student() { Id = 0, Name = "hank" },
             new Student() { Id = 1, Name = "deadeye" },
-            new Student() { Id = 2, Name = "rider" }
+            new Student() { Id = 2, Name = "rider" },
+            new Student() { Id = 3, Name = "Fjaags"},
         };
 
         [HttpPost]
         [Route("add")]
         public void Post([FromBody] Student student)
         {
+            var clinet = HttpContext.Current;
             students.Add(student);
         }
 
@@ -89,7 +92,12 @@ namespace exercise.Controllers
         [Route("customResult")]
         public IHttpActionResult GetTextResult([FromUri]int id)
         {
-            var s
+            var student = students.Where(o => o.Id == id).First();
+            if(student == null)
+            {
+                return NotFound();
+            }
+            return new TextResult(student.Name, Request);
         }
     }
 }
