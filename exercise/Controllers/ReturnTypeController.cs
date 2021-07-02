@@ -18,7 +18,8 @@ namespace exercise.Controllers
     ///    IHttpActionResult
     ///  *
     /// </summary>
-    public class ReturnTypeController:ApiController
+    [RoutePrefix("ReturnType")]
+    public class ReturnTypeController : ApiController
     {
         public static List<Student> students = new List<Student>() {
             new Student() { Id = 0, Name = "hank" },
@@ -27,11 +28,12 @@ namespace exercise.Controllers
             new Student() { Id = 3, Name = "Fjaags"},
         };
 
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "users")]
         [HttpPost]
         [Route("add")]
         public void Post([FromBody] Student student)
         {
-            var clinet = HttpContext.Current;
             students.Add(student);
         }
 

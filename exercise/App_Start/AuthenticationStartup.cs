@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-
+[assembly: OwinStartup(typeof(exercise.App_Start.AuthenticationStartup))]
 namespace exercise.App_Start
 {
     public static class AuthenticationStartup
