@@ -20,8 +20,9 @@ namespace exercise.App_Start
             {
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
-                Provider = myProvider
+                AccessTokenExpireTimeSpan = TimeSpan.FromSeconds(20),
+                Provider = myProvider,
+                RefreshTokenProvider = new OAuthCustomRefreshTokenProvider()
             };
             app.UseOAuthAuthorizationServer(options);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());

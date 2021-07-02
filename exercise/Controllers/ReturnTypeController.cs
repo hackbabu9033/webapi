@@ -29,7 +29,6 @@ namespace exercise.Controllers
         };
 
         [Authorize(Roles = "admin")]
-        [Authorize(Roles = "users")]
         [HttpPost]
         [Route("add")]
         public void Post([FromBody] Student student)
