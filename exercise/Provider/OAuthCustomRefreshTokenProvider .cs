@@ -26,7 +26,8 @@ namespace exercise.Provider
             var refreshTokenProperties = new AuthenticationProperties(context.Ticket.Properties.Dictionary)
             {
                 IssuedUtc = context.Ticket.Properties.IssuedUtc,
-                ExpiresUtc = DateTime.UtcNow.AddSeconds(40)
+                ExpiresUtc = DateTime.UtcNow.AddSeconds(40),
+                AllowRefresh = true
             };
             var refreshTokenTicket = await Task.Run(() => new AuthenticationTicket(context.Ticket.Identity, refreshTokenProperties));
 
